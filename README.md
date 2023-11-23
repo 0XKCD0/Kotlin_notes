@@ -606,6 +606,104 @@ ____________________________________________
 |    Protected       |          n/a           |    Subclasses        |
 
 
+### Object Declaration
+_____________________________________
+
+It always has a name following the object keyword. Just like a variable declaration, an object declaration is not an expression, and it cannot be used on the right-hand side of an assignment statement.
+
+```
+fun main(){
+    println(A.num)
+    B.test()
+}
+
+object A{
+    val num: Int = 10
+}
+
+object B{
+    val p: Int = 20
+    fun test(){
+        println("I am object B")
+    }
+} 
+```
+
+```
+fun main(){
+    sharing_widget.increment_facbook_likes()
+    sharing_widget.increment_twitter_likes()
+    sharing_widget.increment_twitter_likes()
+    sharing_widget.display()
+    sharing_widget.increment_facbook_likes()
+}
+
+object sharing_widget{
+    private var twitter_likes=0
+    private var facebook_likes=0
+
+    fun increment_twitter_likes()= twitter_likes++
+    fun increment_facbook_likes()= facebook_likes++
+    fun display()= println("facebook - $facebook_likes -- Twitter - $twitter_likes")
+}
+```
+
+### Object Expression
+_______________________________
+
+Object expressions create objects of anonymous classes, that is, classes that aren't explicitly declared with the class declaration. Such classes are useful for one-time use. We can define them from scratch, inherit from existing classes, or implement interfaces. Instances of anonymous classes are also called anonymous objects because they are defined by an expression, not a name.
+
+```
+fun main(){
+    var obj = object : person0("shivangi"){
+        override fun fullName() {
+            super.fullName()
+            println("anonymous - $name")
+        }
+    }
+    obj.fullName()
+}
+
+interface cloneable{
+    fun clone()
+}
+
+open class person0(val name: String){
+    open fun fullName() = println("Full Name - $name")
+}
+```
+
+### Companion Object
+____________________________
+
+An object declaration inside a class can be marked with the companion keyword. Members of the companion object can be called simply by using the class name as the qualifier. Class members can access the private members of the corresponding companion object.
+
+```
+fun main(){
+    myClass.myobject.f() // redundancy can be seen
+    myClass.anotherobject.g()
+    myClass.f()
+}
+
+class myClass{
+    companion object myobject{
+        fun f(){
+            println("I am object f from myobject")
+        }
+    }
+
+    object anotherobject{
+        fun g(){
+            println("I am object g from anotherobject")
+        }
+    }
+}
+```
+
+
+
+
+
 
 
 
