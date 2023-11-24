@@ -700,6 +700,124 @@ class myClass{
 }
 ```
 
+### Data Classes
+_________________________________________
+
+Data classes in Kotlin are classes whose main purpose is to hold data. Data classes come automatically with additional member functions that allow you to print an instance to readable output, compare instances, copy instances, and more. Data classes are marked with data. 
+
+```
+fun main(){
+    val P1 = person100(2,"john")
+    val P2 = person100(1, "smith")
+    val P3 = P1.copy(3) // COPYING
+    println(P3)
+
+    val (id, name) = P1 // DESTRUCTURING
+    println(id)
+    println(name)
+    println(P1.component1())
+    println(P2.component2())
+
+}
+
+data class person100(val id: Int, val name: String){
+
+}
+```
+
+### Enum Classes
+______________________________
+
+The most basic use case for enum classes is the implementation of type-safe enums.
+Each enum constant is an object. Enum constants are separated by commas.Enum constants can declare their own anonymous classes with their corresponding methods, as well as with overriding base methods.
+
+```
+fun main(){
+    val day = Day.SUNDAY
+    println(day)
+    println(day.num)
+
+    for (i in Day.values()){
+        println(i)
+    }
+    day.printFormattedDay()
+}
+
+enum class Day(val num: Int){
+    SUNDAY(1),
+    MONDAY(2),
+    TUESDAY(3),
+    WEDNESDAY(4),
+    THURSDAY(5),
+    FRIDAY(6),
+    SATURDAY(7);
+
+    fun printFormattedDay(){
+        println("Day is $this")
+    }
+}
+```
+
+### Sealed Classes
+______________________________
+
+Sealed classes and interfaces represent restricted class hierarchies that provide more control over inheritance. All direct subclasses of a sealed class are known at compile time. No other subclasses may appear outside the module and package within which the sealed class is defined. For example, third-party clients can't extend your sealed class in their code. Thus, each instance of a sealed class has a type from a limited set that is known when this class is compiled.
+
+Sealed classes are similar to enum classes: the set of values for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass of a sealed class can have multiple instances, each with its own state.
+
+```
+fun main(){
+    val tile = Red("Mushroom", 23)
+    val tile2 = Red("Fire", 34)
+
+//    val point = when(tile){
+//        is Red -> tile.point*2
+//        is Blue -> tile.point*3
+//       else -> println("invalid")
+//    }
+//    println(point)
+}
+
+sealed class Tile
+
+class Red(val type: String, val point: Int) : Tile()
+class Blue(val point: Int) : Tile()
+```
+
+### Null Safety
+______________________
+
+Kotlin's type system is aimed at eliminating the danger of null references, also known as The Billion Dollar Mistake.
+
+One of the most common pitfalls in many programming languages, including Java, is that accessing a member of a null reference will result in a null reference exception. In Java this would be the equivalent of a NullPointerException, or an NPE for short.
+
+```
+fun main(){
+    var gender: String = "Male"
+    var gender2: String? = null //SAFE CALLS
+    var gender3: Boolean? = null
+
+    if (gender2 != null){
+        println(gender2.toUpperCase())
+    }
+
+    println(gender2?.toUpperCase())
+
+    gender2?.let { //SAFE CALLS WITH LET OPERATOR
+        println("Line 1")
+        println("Line 2 $gender2")
+        println("Line 3 $it")
+    }
+
+    var selectedValue = gender2 ?: "na" //ELVIS OPERATOR
+    var value = gender2!!.toUpperCase() //NOT NULL ASSERTED OPERATOR
+
+}
+```
+
+
+
+
 
 
 
