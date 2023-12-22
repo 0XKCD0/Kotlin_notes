@@ -113,6 +113,138 @@ val result = x || y  // 'y' is not evaluated because 'x' is true
 
 ```
 
+### if-else 
+___________________________
+
+In Kotlin **if** is an expression. It is called an expression because it compares the value.
+
+```
+fun main(){
+    val a=4
+    if (a % 2 == 0){
+        println("It is divisible by 2")
+    }
+    else{
+        println("It is not divisible by 2")
+    }
+}
+```
+if-else ladder
+_____________________
+
+A user can put multiple conditions. All the ‘if’ statements are executed from the top to bottom. One by one all the conditions are checked and if any of the conditions is found to be true then the code associated with the if statement will be executed and all other statements bypassed to the end of the block. If none of the conditions is true, then by default the final else statement will be executed. 
+
+```
+fun main(){
+    val age = 12
+    if (age > 18){
+        println("eligible to vote and drive")
+    }
+    else if (age<18){
+        println("not eligible to vote")
+    }
+    else{
+        println("invalid choice")
+    }
+}
+```
+if-else expression
+__________________________
+
+```
+fun main(){
+    val a = 22
+    val b = 42
+    val result = if (a>b){
+        "a is greater than b"
+    }
+    else if(a<b){
+        "a is less than b"
+    }
+    else{
+        "a equals b"
+    }
+    println(result)
+    //Call the alternate fun
+   alternate()
+}
+
+fun alternate(){
+    val num=21
+    val res = if (num%2==0) "even" else "odd"
+    println(res)
+}
+```
+
+### Kotlin when expression
+_______________________________________
+
+**when** replaces the switch operator of Java. The argument of when expression compares with all the branches one by one until some match is found. After the first match is found, it reaches to end of the when block and executes the code next to the when block.
+
+```
+fun main(){
+    val num = 15
+    // in is an operator and .. is used for defining the range
+    val result = num in 1..6
+    println(result)
+    when_operator()
+    until_operator()
+}
+// when can be also used as an expression
+fun when_operator(){
+    val animal = "Dog"
+    when(animal){
+        "Horse" -> println("Animal is horse")
+        "cat" -> println("Animal is cat")
+        "Dog" -> println("Animal is dog")
+        "lion" -> println("Animal is lion")
+        else -> println("animal not found")
+    }
+}
+fun until_operator(){
+    val number = 42
+    val res = number until 42
+    println(res)
+}
+
+```
+
+### Loops
+_______________________________________________
+
+1. while loop
+
+Checks for condition then executes.
+```
+fun main(){
+    var count = 5
+    while (count<9){
+        println("hi")
+        count ++
+    }
+}
+```
+---------------------------------------------------
+2. do while loop
+
+First executes the statement minimum for 1 time and the checks for condition.
+
+```
+fun main(){
+    var index = 5
+    do{
+        println("hii")
+    }while (index>5)
+}
+```
+---------------------------------------------------
+3. for loop
+
+
+
+
+
+
 
 
 
